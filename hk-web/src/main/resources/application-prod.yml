@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Shanghai&useUnicode=true&character_set_server=utf8mb4&useSSL=false&allowPublicKeyRetrieval=true
+    username: ENC(o5751Uo/+eStnW69ack4Ag==)
+    password: ENC(KjL+rcN0SiK2cPv54shZfQ==)
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 10
+      min-idle: 10
+      max-active: 15
+      max-wait: 60000
+      test-on-borrow: false
+      test-on-return: false
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss #jackson 格式化时间，全局配置
+    time-zone: GMT+8 #jackson时区配置，配置为东八区
+    serialization:
+      write-dates-as-timestamps: false
+#mybatis 配置
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+jasypt:
+  encryptor:
+    password: hk56E213cdKh
