@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Shanghai&useUnicode=true&character_set_server=utf8mb4&useSSL=false&allowPublicKeyRetrieval=true
-    username: ENC(o5751Uo/+eStnW69ack4Ag==)
-    password: ENC(KjL+rcN0SiK2cPv54shZfQ==)
+    username: root
+    password: 123456kk
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 10
@@ -21,7 +21,3 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-jasypt:
-  encryptor:
-    password: hk56E213cdKh
