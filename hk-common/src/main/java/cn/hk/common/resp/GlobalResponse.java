@@ -15,14 +15,14 @@ public class GlobalResponse<T> {
     public GlobalResponse(){
     }
 
-    public GlobalResponse(String code, String msg, Boolean status, T data) {
+    private GlobalResponse(String code, String msg, Boolean status, T data) {
         this.code = code;
         this.msg = msg;
         this.status = status;
         this.data = data;
     }
 
-    public GlobalResponse(RespEnums enums,Boolean status,T data){
+    private GlobalResponse(RespEnums enums,Boolean status,T data){
         this(enums.getCode(),enums.getMessage(),true,data);
     }
 
