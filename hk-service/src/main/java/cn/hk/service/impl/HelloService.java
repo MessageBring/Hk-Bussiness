@@ -1,6 +1,6 @@
 package cn.hk.service.impl;
 
-import cn.hk.common.BussinessException;
+import cn.hk.common.BusinessException;
 import cn.hk.common.enums.RespEnums;
 import cn.hk.dao.service.IProjectTestService;
 import cn.hk.model.dto.ProjectTestDTO;
@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -51,7 +50,7 @@ public class HelloService implements IHelloService {
         projectTest.setDateUpdate(now);
         boolean isSave = projectTestService.save(projectTest);
         if (!isSave){
-            throw new BussinessException(RespEnums.SERVER_ERROR.getCode(), "add project_test fail");
+            throw new BusinessException(RespEnums.SERVER_ERROR.getCode(), "add project_test fail");
         }
     }
 }

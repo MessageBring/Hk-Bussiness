@@ -1,6 +1,6 @@
 package cn.hk.web.config;
 
-import cn.hk.common.BussinessException;
+import cn.hk.common.BusinessException;
 import cn.hk.common.enums.RespEnums;
 import cn.hk.common.resp.GlobalResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +21,9 @@ public class GlobalExceptionHandler {
         return GlobalResponse.fail(RespEnums.SERVER_ERROR);
     }
 
-    @ExceptionHandler(BussinessException.class)
+    @ExceptionHandler(BusinessException.class)
     @ResponseBody
-    public GlobalResponse bussinessExceptionHandler(HttpServletRequest request, BussinessException e) {
+    public GlobalResponse bussinessExceptionHandler(HttpServletRequest request, BusinessException e) {
         log.info("Bussiness Exception:{},{}",e.getErrMsg(),e.getCode());
         return GlobalResponse.fail(RespEnums.FAIL);
     }

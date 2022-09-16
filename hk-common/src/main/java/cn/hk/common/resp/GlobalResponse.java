@@ -3,26 +3,26 @@ package cn.hk.common.resp;
 import cn.hk.common.enums.RespEnums;
 import lombok.Data;
 
-public class GlobalResponse {
+public class GlobalResponse<T> {
     private String code;
 
     private String msg;
 
     private Boolean status;
 
-    private Object data;
+    private T data;
 
     public GlobalResponse(){
     }
 
-    public GlobalResponse(String code, String msg, Boolean status, Object data) {
+    public GlobalResponse(String code, String msg, Boolean status, T data) {
         this.code = code;
         this.msg = msg;
         this.status = status;
         this.data = data;
     }
 
-    public GlobalResponse(RespEnums enums,Boolean status,Object data){
+    public GlobalResponse(RespEnums enums,Boolean status,T data){
         this(enums.getCode(),enums.getMessage(),true,data);
     }
 
@@ -30,7 +30,7 @@ public class GlobalResponse {
         return success(null);
     }
 
-    public static GlobalResponse success(Object data){
+    public static <T> GlobalResponse<T> success(T data){
         return new GlobalResponse(RespEnums.SUCCESS,true,data);
     }
 
@@ -70,7 +70,7 @@ public class GlobalResponse {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 }
