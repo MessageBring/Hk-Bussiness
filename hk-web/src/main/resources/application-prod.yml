@@ -21,3 +21,8 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+hk-business:
+  snow-flake:
+    data-center-id: 1
+    worker-id: 1
