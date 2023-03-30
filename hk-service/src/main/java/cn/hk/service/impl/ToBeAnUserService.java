@@ -4,6 +4,7 @@ import cn.hk.common.utils.StringUtil;
 import cn.hk.common.utils.UniqueIdUtil;
 import cn.hk.dao.service.IUsersMapperService;
 import cn.hk.model.po.Users;
+import cn.hk.model.vo.UserVO;
 import cn.hk.service.IToBeAnUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class ToBeAnUserService implements IToBeAnUserService {
 
     private final IUsersMapperService usersMapperService;
     @Override
-    public void registerUser(String nickName, String contact, int gender,int age) {
+    public void registerUser(String nickName, String contact, int gender,int age,String password) {
         boolean isPhone = StringUtil.checkPhone(contact);
         boolean isEmail = StringUtil.checkEmail(contact);
         Users users = usersMapperService.getOne(new QueryWrapper<Users>().lambda()
@@ -37,7 +38,23 @@ public class ToBeAnUserService implements IToBeAnUserService {
             }
             newUser.setAge(age);
             newUser.setGender(gender);
+            newUser.setPassword(password);
             usersMapperService.addNewUserRecord(newUser);
         }
+    }
+
+    @Override
+    public UserVO login(String account, String password) {
+        boolean isPhone = StringUtil.checkPhone(account);
+        boolean isEmail = StringUtil.checkEmail(account);
+        Users users = usersMapperService.getOne(new QueryWrapper<Users>()
+                .lambda()
+                .eq(isPhone, Users::getPhone, account)
+                .eq(isEmail, Users::getEmail, account)
+        );
+        if (users!=null){
+
+        }
+        return null;
     }
 }

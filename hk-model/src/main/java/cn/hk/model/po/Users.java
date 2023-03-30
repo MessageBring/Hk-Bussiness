@@ -32,6 +32,8 @@ public class Users implements Serializable {
      */
     private String nickName;
 
+    private String password;
+
     /**
      * 用户性别，0:女，1:男，2:保密
      */

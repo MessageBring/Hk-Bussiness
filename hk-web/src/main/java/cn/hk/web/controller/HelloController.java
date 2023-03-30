@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -26,5 +27,11 @@ public class HelloController {
     public GlobalResponse addOneProjectTest(@RequestBody ProjectTestDTO projectTestDTO){
         helloService.addOneProjectTestRecord(projectTestDTO);
         return GlobalResponse.success();
+    }
+
+    @GetMapping("/testShorterUrl")
+    public void testShorterUrl(HttpServletResponse response){
+        response.setStatus(302);
+        response.setHeader("location","https://www.baidu.com");
     }
 }
