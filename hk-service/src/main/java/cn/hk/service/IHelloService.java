@@ -9,4 +9,6 @@ public interface IHelloService {
     List<ProjectTestVo> queryAllProjectTest();
 
     void addOneProjectTestRecord(ProjectTestDTO projectTestDTO);
+
+    String testRestTemplate(String url);
 }

@@ -2,6 +2,7 @@ package cn.hk.service.impl;
 
 import cn.hk.common.BusinessException;
 import cn.hk.common.enums.RespEnums;
+import cn.hk.common.utils.RestTemplateUtil;
 import cn.hk.dao.service.IProjectTestService;
 import cn.hk.model.dto.ProjectTestDTO;
 import cn.hk.model.po.ProjectTest;
@@ -12,9 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -52,5 +51,12 @@ public class HelloService implements IHelloService {
         if (!isSave){
             throw new BusinessException(RespEnums.SERVER_ERROR.getCode(), "add project_test fail");
         }
+    }
+
+    @Override
+    public String testRestTemplate(String url) {
+        Map<String,String> map = new HashMap<>();
+        map.put("test","test");
+        return RestTemplateUtil.doGet(url,String.class);
     }
 }

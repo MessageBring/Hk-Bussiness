@@ -20,4 +20,11 @@ public class StringUtil {
         }
         return email.matches(EMAIL_REGX);
     }
+
+    public static boolean isEmpty(String str){
+        if (str==null||"".equals(str)){
+            return true;
+        }
+        return false;
+    }
 }

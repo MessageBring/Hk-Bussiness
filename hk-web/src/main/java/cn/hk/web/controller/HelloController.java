@@ -34,4 +34,9 @@ public class HelloController {
         response.setStatus(302);
         response.setHeader("location","https://www.baidu.com");
     }
+
+    @GetMapping("/testRestTemplateGET")
+    public GlobalResponse<String> testRestTemplate(@RequestParam(name = "url") String url){
+        return GlobalResponse.success(helloService.testRestTemplate(url));
+    }
 }
