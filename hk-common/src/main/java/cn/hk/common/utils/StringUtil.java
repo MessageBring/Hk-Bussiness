@@ -7,24 +7,21 @@ public class StringUtil {
 
     private static final String EMAIL_REGX = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
 
-    public static boolean checkPhone(String phone) {
+    public static boolean isPhone(String phone) {
         if (phone==null||"".equals(phone)){
-            throw new IllegalArgumentException("Check phone param can't be empty");
+            return false;
         }
         return phone.matches(PHONE_REGX);
     }
 
-    public static boolean checkEmail(String email) {
+    public static boolean isEmail(String email) {
         if (email==null||"".equals(email)){
-            throw new IllegalArgumentException("Check phone param can't be empty");
+            return false;
         }
         return email.matches(EMAIL_REGX);
     }
 
     public static boolean isEmpty(String str){
-        if (str==null||"".equals(str)){
-            return true;
-        }
-        return false;
+        return str == null || "".equals(str);
     }
 }

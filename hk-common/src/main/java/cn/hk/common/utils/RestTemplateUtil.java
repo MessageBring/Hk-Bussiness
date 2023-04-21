@@ -2,6 +2,7 @@ package cn.hk.common.utils;
 
 import cn.hk.common.BusinessException;
 import cn.hk.common.config.RestTemplateInterceptor;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -48,9 +49,6 @@ public class RestTemplateUtil {
 
     private static RestTemplate restTemplate;
 
-    /**
-     * 加载restTemplate配置
-     */
     static {
         Registry<ConnectionSocketFactory> registry = RegistryBuilder.<ConnectionSocketFactory>create()
                 .register("http", PlainConnectionSocketFactory.getSocketFactory())
@@ -94,7 +92,7 @@ public class RestTemplateUtil {
         if (StringUtil.isEmpty(url)){
             throw new IllegalArgumentException("request url can't be empty");
         }
-        ResponseEntity<R> rResponseEntity = null;
+        ResponseEntity<R> rResponseEntity;
         try {
             rResponseEntity = restTemplate.exchange(url,httpMethod,httpEntity,rClass);
             log.info("Rest Response:{}",rResponseEntity.getBody());
@@ -115,9 +113,8 @@ public class RestTemplateUtil {
         for (String key:header.keySet()){
             headers.add(key,header.get(key));
         }
-        HttpEntity<Object> request = new HttpEntity(null,headers);
-        R resp = invoke(requestUrl,HttpMethod.GET,request,rClass);
-        return resp;
+        HttpEntity request = new HttpEntity(null,headers);
+        return invoke(requestUrl,HttpMethod.GET,request,rClass);
     }
 
     /**
@@ -190,5 +187,12 @@ public class RestTemplateUtil {
     public static <R> R doPost(String url,Map<String,Object> param,Class<R> rClass){
         HttpEntity<Map> entity = new HttpEntity<>(param);
         return invoke(url,HttpMethod.POST,entity,rClass);
+    }
+
+    public static void main(String[] args) {
+        JSONObject param = new JSONObject();
+        param.put("testDesc","sixth");
+        JSONObject resp = doPost("http://127.0.0.1:8080/hello/addOneProjectTest",param, JSONObject.class);
+        System.out.println(resp.toJSONString());
     }
 }

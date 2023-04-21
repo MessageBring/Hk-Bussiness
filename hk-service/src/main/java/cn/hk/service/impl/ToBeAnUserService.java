@@ -1,5 +1,7 @@
 package cn.hk.service.impl;
 
+import cn.hk.common.BusinessException;
+import cn.hk.common.enums.RespEnums;
 import cn.hk.common.utils.StringUtil;
 import cn.hk.common.utils.UniqueIdUtil;
 import cn.hk.dao.service.IUsersMapperService;
@@ -20,8 +22,8 @@ public class ToBeAnUserService implements IToBeAnUserService {
     private final IUsersMapperService usersMapperService;
     @Override
     public void registerUser(String nickName, String contact, int gender,int age,String password) {
-        boolean isPhone = StringUtil.checkPhone(contact);
-        boolean isEmail = StringUtil.checkEmail(contact);
+        boolean isPhone = StringUtil.isPhone(contact);
+        boolean isEmail = StringUtil.isEmail(contact);
         Users users = usersMapperService.getOne(new QueryWrapper<Users>().lambda()
                 .eq(isPhone, Users::getPhone, contact)
                 .eq(isEmail, Users::getEmail, contact)
@@ -45,15 +47,15 @@ public class ToBeAnUserService implements IToBeAnUserService {
 
     @Override
     public UserVO login(String account, String password) {
-        boolean isPhone = StringUtil.checkPhone(account);
-        boolean isEmail = StringUtil.checkEmail(account);
+        boolean isPhone = StringUtil.isPhone(account);
+        boolean isEmail = StringUtil.isEmail(account);
         Users users = usersMapperService.getOne(new QueryWrapper<Users>()
                 .lambda()
                 .eq(isPhone, Users::getPhone, account)
                 .eq(isEmail, Users::getEmail, account)
         );
-        if (users!=null){
-
+        if (users==null){
+            throw new BusinessException(RespEnums.NO_DATA.getCode(),"User does not exist");
         }
         return null;
     }
