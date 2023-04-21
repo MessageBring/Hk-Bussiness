@@ -6,8 +6,6 @@ import cn.hk.common.enums.RespEnums;
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
 
@@ -21,7 +19,7 @@ public class AESEncrypt implements IEncrypt{
     private static final String CIPHER_MODE = "AES/ECB/pkcs5padding";
 
     private String key;
-
+    
     public AESEncrypt(String key) {
         this.key = key;
     }

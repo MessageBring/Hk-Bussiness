@@ -10,32 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class UsersMapperService extends ServiceImpl<UsersMapper, Users> implements IUsersMapperService {
 
-    private UsersMapper usersMapper = this.getBaseMapper();
-
-    @Override
-    public Boolean checkPhoneExist(String phone) {
-        long count = this.count(new QueryWrapper<Users>().lambda()
-                .eq(Users::getPhone,phone)
-                .eq(Users::getIsDeleted,0)
-        );
-        if (count>0){
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public Boolean checkEmailExist(String email) {
-        long count = this.count(new QueryWrapper<Users>().lambda()
-                .eq(Users::getEmail,email)
-                .eq(Users::getIsDeleted,0)
-        );
-        if (count>0){
-            return true;
-        }
-        return false;
-    }
-
     @Override
     public boolean addNewUserRecord(Users user) {
         return this.save(user);
