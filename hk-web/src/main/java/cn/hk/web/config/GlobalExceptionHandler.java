@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     @ResponseBody
     public GlobalResponse bussinessExceptionHandler(HttpServletRequest request, BusinessException e) {
-        log.info("Bussiness Exception:{},{}",e.getErrMsg(),e.getCode());
-        return GlobalResponse.fail(RespEnums.FAIL);
+        log.info("Bussiness Exception:{},{}",e.getCode(),e.getErrMsg());
+        return GlobalResponse.fail(e.getCode(),e.getErrMsg());
     }
 }

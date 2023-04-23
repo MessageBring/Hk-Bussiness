@@ -18,6 +18,8 @@ public enum RespEnums {
     //token校验未通过
     TOKEN_INVALID("100403","invalid token"),
 
+    OVER_LOG_ERR_COUNT("100501","The number of wrong passwords exceeds 5 times, please try again tomorrow or contact customer service"),
+
     ;
 
     private String code;

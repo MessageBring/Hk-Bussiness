@@ -33,4 +33,6 @@ public class UserVO {
      * 用户是否实名认证，0:未认证，1:已认证
      */
     private int isVerified;
+
+    private String token;
 }

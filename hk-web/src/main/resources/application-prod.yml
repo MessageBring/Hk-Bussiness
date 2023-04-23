@@ -12,6 +12,23 @@ spring:
       max-wait: 60000
       test-on-borrow: false
       test-on-return: false
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: 123456
+      filter:
+        stat:
+          enabled: true
+          db-type: mysql
+          log-slow-sql: true
+          slow-sql-millis: 2000
+        wall:
+          enabled: true
+          db-type: mysql
+          config:
+            delete-allow: false
+            drop-table-allow: false
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss #jackson 格式化时间，全局配置
     time-zone: GMT+8 #jackson时区配置，配置为东八区
@@ -26,3 +43,8 @@ hk-business:
   snow-flake:
     data-center-id: 1
     worker-id: 1
+
+user:
+  encrypt:
+    rsa-key: MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCwYF/fF7SQE5EGEjAc+GJhA9F1cT80EHZzJ1CVFbmhAu0zSy/9FrkHSRjInem+2CAbnenieh5dKME8G00D4ChHus4ZJzjmgPhxiwisu8+eMdb7CQlnbnbZmBuwbB1k6jHCY/gwH7U/piiAHOEaBxwfArGUUl+9B2bNd8yXUowrHV2HRb8X8Zx5y9iBNpZXrJnWSuAsUOEizzvbdhAz3PEoEvUXFZdmJmO7YrvZlLbvfNoXKRq2m2OmbNv5akFHaQAw4qG2FXEYL52fiK1ewmOrUgCK06VukCLeI8pYyxj2Eo3vX/G6drm0QuMgG8IIJ7Skl6cWLrjzEQwTYL3TZ+/FAgMBAAECggEAbt5l5WqVSevCwbo1HEDWNn2b8OMbA7NFgeU4tj5NzXR1fkTJCaJ69KVyOslo4Voh9LozBvYUmCLCNPJEWydQqqY2X4FUNzDi+xyWe14jiCF0LaDklGvPsb/3x9JuN70vQi5tGHMWD8h2tPFyXlYRyzx6O+372GsKqCWiKYzuJzrnJopC8S4mYyrBPF6Oras0dPKpG1T63KA15q4TruSXn/qXziXV89zGOHVCTnVmrdMS3R7XVLGZFJv8uToMbe1xKijDGUEGdTdQnm7gQ5mVVdGSz9sqBtDzE153OoNElCwiWxum7xybSXsa4GrOn1nN4n1S8/u0Ccl47G7YOEPskQKBgQDVRfBamfWwGGuK+qml1FBueeBwrCDxKVQ8O0R0iAqtvBbVSG0KkB6JUiXogpuIiQGvLZkVwUTkqmq9rI42DYXVhdSQMkIai+cLh1JT611QnIkKVMvzObIbui9qjD27TFvMTzBmtE3dsWGLA1lA6AptsCVDLOm8ygHgPhO1oJMcFwKBgQDTtiB2l2GEBf7cm06ngeG8jGtxIP9nQJOdrAz0WqmIRYSDxtF9F1Zc4G3ZzePY2RwWDmoihBWolLjB+X9eEuzXcz1QN1DKw62ggCqgB1S2fqwTAtzOdNSFVhsieKUidSMqefGJnWp9xCbXboczu52hQfrlDxXByZMxkDNTeG3wgwKBgFLdsd4CJCwf0OlXK8N7EyVZxZMBzmrlnA0rGhYNJdkLU/PbCEMqbDL+8Cu/U59hXH4sQWbqiVIvxPmdqkPmTTIBpe3BGV4nLcaU9bAVq1Q+/iA9gmEm8cVEOlgz1WiI6sIforbFJ9wTp8rTqkJF5odoAZJwSQFJnCD8/bt8gKxRAoGAMZSRfbRuDfEpgpiMjwYHy5RHBTNpHNEuwNouHnutAFDne8TwAo+Ylh+pGjzxgzM1NKUjjfnI6LYLnsHDZlCgTsSaM1MBBLtWyiO518hfum1n9vvQojkSHDfSGvyOD8fG+IeeXVAURGfPgNxNpXvmqoE9NK+XtM50PkM7Ae1OMekCgYB4pl4L0ZioST7BZaVbiWrlT68B3QalGvJ2bk7OoJ0wQcQ9EWgkqFdU54zd0KmLwcwpOge7JNcPKhR7mXd2oSoot+RA3n0uMlyoTfbAG6yWMJ72JSEjoksM/RWJ4MrvqkHI8ExVnosZ32cD+A6+NO604MgQ4sbAhnyWWH3cV4nWwA==
+    public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsGBf3xe0kBORBhIwHPhiYQPRdXE/NBB2cydQlRW5oQLtM0sv/Ra5B0kYyJ3pvtggG53p4noeXSjBPBtNA+AoR7rOGSc45oD4cYsIrLvPnjHW+wkJZ2522ZgbsGwdZOoxwmP4MB+1P6YogBzhGgccHwKxlFJfvQdmzXfMl1KMKx1dh0W/F/GcecvYgTaWV6yZ1krgLFDhIs8723YQM9zxKBL1FxWXZiZju2K72ZS273zaFykatptjpmzb+WpBR2kAMOKhthVxGC+dn4itXsJjq1IAitOlbpAi3iPKWMsY9hKN71/xuna5tELjIBvCCCe0pJenFi648xEME2C902fvxQIDAQAB

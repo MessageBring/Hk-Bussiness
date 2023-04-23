@@ -42,6 +42,14 @@ public class GlobalResponse<T> {
         return new GlobalResponse(enums,false,null);
     }
 
+    public static GlobalResponse fail(String code,String msg){
+        GlobalResponse response = new GlobalResponse();
+        response.setCode(code);
+        response.setMsg(msg);
+        response.setStatus(false);
+        return response;
+    }
+
     public String getCode() {
         return code;
     }
