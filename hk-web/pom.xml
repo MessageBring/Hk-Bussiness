@@ -16,6 +16,10 @@
             <groupId>cn.hk.core</groupId>
             <artifactId>hk-service</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <!-- 配置项加密依赖，用于加密配置文件中的私密信息 -->
 <!--        <dependency>-->
 <!--            <groupId>com.github.ulisesbocchio</groupId>-->

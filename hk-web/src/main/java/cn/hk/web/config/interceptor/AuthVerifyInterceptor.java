@@ -38,6 +38,7 @@ public class AuthVerifyInterceptor implements HandlerInterceptor {
         //判断header和redis的token是否相等，相等将解析的userId存入线程本地变量，方便后续读取
         if (cacheToken.equals(token)){
             BasicContext.threadLocal.set(userId);
+            log.info("request user:{}",userId);
             return true;
         }
         throw new BusinessException(RespEnums.TOKEN_INVALID);
