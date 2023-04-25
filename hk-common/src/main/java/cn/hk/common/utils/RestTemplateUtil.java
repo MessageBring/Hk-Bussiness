@@ -186,10 +186,4 @@ public class RestTemplateUtil {
         return invoke(url,HttpMethod.POST,entity,rClass);
     }
 
-    public static void main(String[] args) {
-        JSONObject param = new JSONObject();
-        param.put("testDesc","sixth");
-        JSONObject resp = doPost("http://127.0.0.1:8080/hello/addOneProjectTest",param, JSONObject.class);
-        System.out.println(resp.toJSONString());
-    }
 }
