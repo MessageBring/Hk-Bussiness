@@ -40,6 +40,6 @@ public class AuthVerifyInterceptor implements HandlerInterceptor {
             BasicContext.threadLocal.set(userId);
             return true;
         }
-        return false;
+        throw new BusinessException(RespEnums.TOKEN_INVALID);
     }
 }
