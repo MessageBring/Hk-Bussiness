@@ -1,7 +1,9 @@
 package cn.hk.service.impl;
 
 import cn.hk.common.BusinessException;
+import cn.hk.common.constants.RedisKeyConstants;
 import cn.hk.common.enums.RespEnums;
+import cn.hk.common.service.IRedisService;
 import cn.hk.common.utils.*;
 import cn.hk.dao.service.IUsersMapperService;
 import cn.hk.model.po.Users;
@@ -21,6 +23,8 @@ import org.springframework.util.ObjectUtils;
 public class ToBeAnUserService implements IToBeAnUserService {
 
     private final IUsersMapperService usersMapperService;
+
+    private final IRedisService redisService;
 
     @Value("${user.encrypt.rsa-key}")
     private String rsaKey;
@@ -74,6 +78,7 @@ public class ToBeAnUserService implements IToBeAnUserService {
             UserVO userVO = new UserVO();
             BeanUtils.copyProperties(users,userVO);
             userVO.setToken(JWTUtil.getToken(userVO.getUserId(),userVO.toString()));
+            redisService.setVal(String.format(RedisKeyConstants.TOKEN_PREFIX,userVO.getUserId()),userVO.getToken(),RedisKeyConstants.TOKEN_TTL);
             return userVO;
         }
         Users updateUser = new Users();

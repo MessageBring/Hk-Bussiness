@@ -34,6 +34,16 @@ spring:
     time-zone: GMT+8 #jackson时区配置，配置为东八区
     serialization:
       write-dates-as-timestamps: false
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-active: 10
+        max-idle: 5
+        max-wait: -1
+        min-idle: 0
 #mybatis 配置
 mybatis-plus:
   configuration:

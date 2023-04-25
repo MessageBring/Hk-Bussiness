@@ -29,7 +29,7 @@ public class JWTUtil {
         JWTVerifier verifier = JWT.require(Algorithm.HMAC256(ENCRYPT_KEY)).build();
         try {
             DecodedJWT decodedJWT = verifier.verify(token);
-            return decodedJWT.getClaim("user").asString();
+            return decodedJWT.getAudience().get(0);
         }catch (Exception e) {
             throw new BusinessException(RespEnums.TOKEN_INVALID);
         }
